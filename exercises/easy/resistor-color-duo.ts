@@ -33,10 +33,10 @@ function decodedValue(colors: Array<string>) {
 
 function colorCheck(color: string): string {
     switch (color) {
-        case 'black': {
+        case 'Black'.toLowerCase(): {
             return '0'
         }
-        case 'brown': {
+        case 'Brown'.toLowerCase(): {
             return '1'
         }
         case 'Red'.toLowerCase(): {
@@ -68,3 +68,4 @@ function colorCheck(color: string): string {
 }
 
 console.log(decodedValue(['blue', 'grey']))
+console.log(decodedValue(['red', 'grey']))
