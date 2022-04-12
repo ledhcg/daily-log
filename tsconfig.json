@@ -10,5 +10,5 @@
     },
 
     "moduleResolution": "node",
-    "include": ["./src/", "src/app.ts"]
+    "include": ["./src/"]
 }

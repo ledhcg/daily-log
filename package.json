@@ -1,8 +1,13 @@
 {
-  "scripts": {
-    "build": "tsc -p ."
-  },
+    "scripts": {
+        "build": "tsc -p .",
+        "watch": "tsc -w",
+        "start": "node build/app.js"
+    },
     "dependencies": {
         "mailer-send-ts": "^1.6.0"
+    },
+    "devDependencies": {
+        "tsc-watch": "^5.0.3"
     }
 }
