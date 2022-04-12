@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "tsc -p ."
+  },
+    "dependencies": {
+        "mailer-send-ts": "^1.6.0"
+    }
+}
