@@ -6,10 +6,10 @@ function decodedValue(colors) {
 }
 function colorCheck(color) {
     switch (color) {
-        case 'black': {
+        case 'Black'.toLowerCase(): {
             return '0';
         }
-        case 'brown': {
+        case 'Brown'.toLowerCase(): {
             return '1';
         }
         case 'Red'.toLowerCase(): {
@@ -40,4 +40,5 @@ function colorCheck(color) {
     return '';
 }
 console.log(decodedValue(['blue', 'grey']));
+console.log(decodedValue(['red', 'grey']));
 //# sourceMappingURL=app.js.map
