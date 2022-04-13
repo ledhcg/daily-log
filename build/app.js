@@ -1,35 +1,34 @@
-function knapsack(items, limit) {
-    let sortItems = items.sort((a, b) => {
-        return a.weight - b.weight;
-    });
+function maximumValue({ maximumWeight, items }) {
     let totalWeight = 0;
     let arrayAvailability = [];
-    let arrayClean = [];
-    if (limit >=
-        sortItems.reduce((total, currentItem) => {
-            return total + currentItem.weight;
-        }, totalWeight)) {
-        arrayAvailability.push(sortItems);
-        return arrayAvailability;
+    let totalValueSource = items.reduce((total, currentItem) => {
+        return total + currentItem.weight;
+    }, totalWeight);
+    if (maximumWeight >= totalValueSource) {
+        return totalValueSource;
     }
-    if (sortItems.length - 1) {
-        sortItems.forEach((item, indexFR) => {
-            callback(sortItems.filter((value, index) => {
-                return index != indexFR;
-            }), limit, arrayAvailability);
+    if (items.length - 1) {
+        items.forEach((item, indexFE) => {
+            callback(items.filter((value, index) => {
+                return index != indexFE;
+            }), maximumWeight, arrayAvailability);
         });
     }
-    arrayClean = unique(arrayAvailability);
-    return arrayClean;
+    return findMaxTotalValue(arrayAvailability);
 }
-function unique(array) {
-    let arrayClean = [];
+function findMaxTotalValue(array) {
+    let resultArray = [];
+    let maxTotalValue = 0;
     array.forEach((item, index) => {
-        if (JSON.stringify(arrayClean).indexOf(JSON.stringify(array[index])) == -1) {
-            arrayClean.push(array[index]);
+        let total = item.reduce((total, item) => {
+            return total + item.value;
+        }, 0);
+        if (total > maxTotalValue) {
+            resultArray = item;
+            maxTotalValue = total;
         }
     });
-    return arrayClean;
+    return maxTotalValue;
 }
 function callback(items, limit, arrayAvailability) {
     let totalWeight = 0;
@@ -40,19 +39,35 @@ function callback(items, limit, arrayAvailability) {
         arrayAvailability.push(items);
     }
     if (items.length - 1) {
-        items.forEach((item, indexFR) => {
+        items.forEach((item, indexFE) => {
             callback(items.filter((value, index) => {
-                return index != indexFR;
+                return index != indexFE;
             }), limit, arrayAvailability);
         });
     }
 }
-console.log(knapsack([
-    { weight: 5, value: 10 },
-    { weight: 2, value: 40 },
-    { weight: 1, value: 30 },
-    { weight: 3, value: 10 },
-    { weight: 4, value: 40 },
-    { weight: 6, value: 30 }
-], 10));
+const input = {
+    maximumWeight: 10,
+    items: [
+        { weight: 2, value: 5 },
+        { weight: 2, value: 5 },
+        { weight: 2, value: 5 },
+        { weight: 2, value: 5 },
+        { weight: 10, value: 21 }
+    ]
+};
+const expected = 21;
+const input2 = {
+    maximumWeight: 10,
+    items: [
+        { weight: 2, value: 20 },
+        { weight: 2, value: 20 },
+        { weight: 2, value: 20 },
+        { weight: 2, value: 20 },
+        { weight: 10, value: 50 }
+    ]
+};
+const expected2 = 80;
+console.log(`${maximumValue(input)} - E: ${expected}`);
+console.log(`${maximumValue(input2)} - E: ${expected2}`);
 //# sourceMappingURL=app.js.map
