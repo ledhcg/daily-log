@@ -26,7 +26,15 @@ interface Item {
 function knapsack(items: Array<Item>, limit: number): Array<Item> {
     let totalValue: number = 0
     let totalWeight: number = 0
-
+    let arrayAvailability: Array<Array<Item>>
+    if (
+        limit >=
+        items.reduce((total, currentItem) => {
+            return total + currentItem.weight
+        }, totalWeight)
+    ) {
+        arrayAvailability.push(items)
+    }
     // let result = items.filter(item => {
     //     totalWeight += item.weight
     //     console.log(totalWeight)
@@ -42,7 +50,7 @@ function knapsack(items: Array<Item>, limit: number): Array<Item> {
     })
 
     let result2 = result.filter(item => {
-        totalWeight += item.weight
+        totalValue += totalWeight += item.weight
         if (totalWeight <= limit) {
             return {
                 weight: item.weight,
